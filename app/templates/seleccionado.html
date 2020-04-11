@@ -1,0 +1,42 @@
+<head>
+    <title>Departamentos Nina</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    
+    <div class="navbar-fixed">
+        <nav style="background-color: teal;">
+            <div class="nav-wrapper">
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="{% url 'home' %}">Inicio</a></li>
+                    <li><a href="sass.html">Contactos</a></li>
+                    <li><a href="{% url 'departamentos'%}">Departamentos</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="card-panel teal lighten-1" style="margin: 0px;">
+        <h4 style="text-align: center; color: lavenderblush;">Bienvenido a departamentos NINA</h4>
+    </div>
+    <ul>
+        <li>{{ departamento_seleccionado.calle }}</li>
+        <li>alquilado = {{ departamento_seleccionado.alquilado }}</li>
+    {% for d in reservas %}
+    </ul>
+        <li>reserva:  {{ d.dia_inicial }} {{ d.dia_final }}</li>
+    <ul>
+    {% endfor %}
+    </ul>
+    <h5>Reservar:</h5>
+    {% block content %}
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Confirmar</button>
+    </form>
+{% endblock %}
+    
+</body>
+</html>
